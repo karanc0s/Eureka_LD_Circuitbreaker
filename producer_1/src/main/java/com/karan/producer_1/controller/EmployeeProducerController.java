@@ -1,6 +1,8 @@
 package com.karan.producer_1.controller;
 
 import com.karan.producer_1.model.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/emp")
 public class EmployeeProducerController {
+
+    @Autowired
+    private Environment environment;
 
     private static Map<Integer , Employee> employees = new LinkedHashMap<>();
     static Integer count = 10003;
@@ -65,6 +70,15 @@ public class EmployeeProducerController {
         }
         employees.remove(id);
         return ResponseEntity.ok("Employee deleted successfully");
+    }
+
+
+    /// this is for checking load balancing on client side
+    @GetMapping("/get")
+    public ResponseEntity<Collection<Employee>> getDetails(){
+        String str = "This Server with portNumber" + environment.getProperty("server.port") + " Got a hit";
+        System.out.println(str);
+        return ResponseEntity.ok(employees.values());
     }
 
 
