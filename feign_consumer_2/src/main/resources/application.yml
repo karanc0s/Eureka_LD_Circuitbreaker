@@ -1,0 +1,7 @@
+
+spring:
+  application:
+    name: feign_consumer_2
+
+server:
+  port: 8010
