@@ -11,3 +11,16 @@ eureka:
   client:
     service-url:
       defaultZone : http://localhost:8000/eureka
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      jasKeyCompute:
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 6
+        wait-duration-in-open-state:
+          seconds: 45
+        permitted-number-of-calls-in-half-open-state: 4
+        sliding-window-type: COUNT_BASED

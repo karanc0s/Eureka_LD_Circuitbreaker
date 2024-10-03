@@ -29,7 +29,8 @@ public class EmployeeProducerController {
 
     @GetMapping("/getDetails")
     public ResponseEntity<Collection<Employee>> getEmployees(){
-        return ResponseEntity.ok(employees.values());
+        return new ResponseEntity<Collection<Employee>>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        return ResponseEntity.ok(employees.values());
     }
 
 
