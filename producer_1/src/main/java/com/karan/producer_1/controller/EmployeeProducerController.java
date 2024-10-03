@@ -29,8 +29,8 @@ public class EmployeeProducerController {
 
     @GetMapping("/getDetails")
     public ResponseEntity<Collection<Employee>> getEmployees(){
-        return new ResponseEntity<Collection<Employee>>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        return ResponseEntity.ok(employees.values());
+//        return new ResponseEntity<Collection<Employee>>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.ok(employees.values());
     }
 
 
@@ -53,7 +53,7 @@ public class EmployeeProducerController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Employee added successfully");
     }
 
-    @PostMapping("/updateEmployee")
+    @PutMapping("/updateEmployee")
     public ResponseEntity<String> updateEmployee(
             @RequestBody Employee emp
     ){
@@ -64,7 +64,7 @@ public class EmployeeProducerController {
         return ResponseEntity.ok("Employee updated successfully");
     }
 
-    @GetMapping("/delete/{EmpId}")
+    @DeleteMapping("/delete/{EmpId}")
     public ResponseEntity<String> deleteEmployee(@PathVariable("EmpId") Integer id){
         if(employees.get(id) == null){
             return ResponseEntity.notFound().build();

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: producer_1
+    name: producer-1
 
 
 server:
