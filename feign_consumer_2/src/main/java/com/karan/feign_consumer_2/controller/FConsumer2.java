@@ -27,6 +27,22 @@ public class FConsumer2 {
         return feignClient.getData();
     }
 
+    public ResponseEntity<Employee> getEmployeeById(Integer id){
+        return feignClient.getEmployeeById(id);
+    }
+
+    public ResponseEntity<String> addEmployee(Employee employee){
+        return feignClient.addEmployee(employee);
+    }
+
+    public ResponseEntity<String> updateEmployee(Employee employee){
+        return feignClient.updateEmployee(employee);
+    }
+
+    public ResponseEntity<String> deleteEmployee(Integer id){
+        return feignClient.deleteEmployee(id);
+    }
+
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleException(RuntimeException runtimeException) {
