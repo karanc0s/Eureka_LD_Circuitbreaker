@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+
+
+          - id: producer
+#            uri: http://localhost:8005
+            uri: lb://PRODUCER-1
+            predicates:
+              - Path=/emp/**
+
+
+
+
+server:
+  port: 8030
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+
